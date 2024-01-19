@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Month from "./components/month/month";
 import Summary from "./components/summary/summary";
 
@@ -18,18 +18,41 @@ const months = [
   { name: "Diciembre", days: 31, init: 6 },
 ];
 export default function Home() {
-  const [holidays, setHolidays] = useState(0);
+  const [dates, setDates] = useState('');
+  const [message, setMessage] = useState({text: 'Suuuuuuuuu', error: false});
+
+  const onClick = () => {
+    if(dates.split(':h:').length <= 25) { 
+      localStorage.setItem('fechas', dates);
+      setMessage({text: 'Sigue así máquina', error: false});
+    } else {
+      setMessage({text: 'Has excedido el límite de vacaciones', error: true});
+    };
+  }
+
+  useEffect(() => {
+    const local = localStorage.getItem('fechas');
+    if(local && !dates) {
+      setDates(local);
+    }
+  }, [])
+
   return (
     <main>
-      <Summary holidays={holidays} />
-      <div className="flex flex-wrap justify-between p-10">
+      <Summary holidays={dates.split(':h:').length - 1} />
+      <div className="flex flex-wrap justify-start items-baseline">
+        <button className="save p-2 rounded ml-3" onClick={onClick}>Guardar</button>
+        <p className={message.error ? "error ml-2" : "normal ml-2"}>{message.text}</p>
+      </div>
+      <div className="flex flex-wrap justify-around p-10">
         {months.map((month, index) => {
           return (
             <Month
               name={month.name}
               days={month.days}
               init={month.init}
-              setHolidays={setHolidays}
+              dates={dates}
+              setDates={setDates}
               key={index}
             />
           );

@@ -42,9 +42,34 @@ label {
   font-weight: 500;
 }
 
+.ownBusiness {
+  background-color: var(--principal);
+}
+
+.paidAbsence {
+  background-color: var(--warning);
+}
+
 .festivity {
   cursor: default;
   background-color: var(--principal-dark);
   font-weight: 500;
   color: var(--light);
+}
+
+.save {
+  background-color: var(--tertiary);
+  color: var(--principal-dark);
+}
+
+.save:hover {
+  background-color: var(--tertiary-dark);
+}
+
+.error {
+  color: var(--error);
+}
+
+.normal {
+  color: var(--dark);
 }

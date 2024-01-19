@@ -6,18 +6,20 @@ export default function Month({
   name,
   days,
   init,
-  setHolidays,
+  dates,
+  setDates,
 }: {
   name: string;
   days: number;
   init: number;
-  setHolidays: React.Dispatch<React.SetStateAction<number>>;
+  dates: string;
+  setDates: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const [allDays, setAllDays] = useState([...Array(days).keys()]);
+  const allDays = [...Array(days).keys()];
   const weeks = Math.ceil((days + init) / 7);
-  console.log("weeks: ", weeks);
+
   return (
-    <div className="max-w-64 mb-5">
+    <div className="max-w-64 m-3">
       <label>{name}</label>
       <div>
         {[...Array(weeks).keys()].map((week, index) => {
@@ -30,7 +32,8 @@ export default function Month({
               month={name}
               init={init}
               numbers={numbers}
-              setHolidays={setHolidays}
+              dates={dates}
+              setDates={setDates}
               key={index}
             />
           ) : (
@@ -38,7 +41,8 @@ export default function Month({
               month={name}
               init={0}
               numbers={numbers}
-              setHolidays={setHolidays}
+              dates={dates}
+              setDates={setDates}
               key={index}
             />
           );

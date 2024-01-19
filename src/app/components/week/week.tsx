@@ -21,27 +21,57 @@ export default function Week({
   month,
   init,
   numbers,
-  setHolidays,
+  dates,
+  setDates,
 }: {
   month: string;
   init: number;
   numbers: number[];
-  setHolidays: React.Dispatch<React.SetStateAction<number>>;
+  dates: string;
+  setDates: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  // const [isHoliday, setIsHoliday] = useState(false);
 
-  const onClick = (event: any) => {
+  const onClick = (event: any, number: number) => {
     if (event.target.className.includes("daily")) {
-      event.target.className = "holiday";
-      setHolidays((prev) => prev + 1);
+      setDates((prev) => prev + month + ':h:' + number + ';');
       return;
     }
     if (event.target.className.includes("holiday")) {
-      event.target.className = styles.daily;
-      setHolidays((prev) => prev - 1);
+      setDates((prev) => prev.replace(month + ':h:' + number + ';', month + ':ob:' + number + ';'));
+      return;
+    }
+    if (event.target.className.includes("ownBusiness")) {
+      setDates((prev) => prev.replace(month + ':ob:' + number + ';', month + ':pa:' + number + ';'));
+      return;
+    }
+    if (event.target.className.includes("paidAbsence")) {
+      setDates((prev) => prev.replace(month + ':pa:' + number + ';', ''));
       return;
     }
   };
+
+  const getClassName = (value: number, number: number) => {
+    //Comprobamos si está guardado como vacaciones
+    if(dates.includes(month + ':h:' + number + ';')){
+      return 'holiday';
+    }
+    //Comprobamos si está guardado como asuntos propios
+    if(dates.includes(month + ':ob:' + number + ';')){
+      return 'ownBusiness';
+    }
+    //Comprobamos si está guardado como ausencias pagadas
+    if(dates.includes(month + ':pa:' + number + ';')){
+      return 'paidAbsence';
+    }
+    //Comprobamos si es fin de semana
+    if(value > 4) return styles.weekend;
+    //Comprobamos si es festivo
+    if(festivities
+      .filter((festivity) => festivity.month === month)[0]
+      .days.includes(number)) return 'festivity';
+    
+    return styles.daily;
+  }
 
   return (
     <div className={styles.week}>
@@ -58,16 +88,10 @@ export default function Week({
         return (
           <button
             className={
-              index + init > 4
-                ? styles.weekend
-                : festivities
-                    .filter((festivity) => festivity.month === month)[0]
-                    .days.includes(number + 1)
-                ? "festivity"
-                : styles.daily
+              getClassName(index + init, number + 1)
             }
             key={index}
-            onClick={onClick}
+            onClick={(event) => onClick(event, number + 1)}
           >
             {number + 1}
           </button>
