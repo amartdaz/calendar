@@ -3,25 +3,48 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --dark: #2F3131;
+  --light: #FDFBFF;
+  --grey: #747070;
+  --grey-light: #DFE0DF;
+  --principal: #D5B9E7;
+  --principal-dark: #3C274C;
+  --secondary: #007663;
+  --secondary-dark: #005B4B;
+  --tertiary: #FFE9FF;
+  --tertiary-dark: #DB90C6;
+  --success: #68CE42;
+  --success-light: #b4e7a1;
+  --warning: #FF9952;
+  --warning-light: #ffcca9;
+  --error: #f00;
+  --error-light: #ff8080;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*, *::after, *::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+main, body {
+  background-color: var(--light);
+}
+
+label {
+  font-size: large;
+  font-weight: 700;
+}
+
+.holiday {
+  background-color: var(--secondary);
+  color: var(--light);
+  font-weight: 500;
+}
+
+.festivity {
+  cursor: default;
+  background-color: var(--principal-dark);
+  font-weight: 500;
+  color: var(--light);
 }
