@@ -39,12 +39,14 @@ export default function Home() {
 
   return (
     <main>
-      <Summary holidays={dates.split(':h:').length - 1} />
-      <div className="flex flex-wrap justify-start items-baseline">
-        <button className="save p-2 rounded ml-3" onClick={onClick}>Guardar</button>
-        <p className={message.error ? "error ml-2" : "normal ml-2"}>{message.text}</p>
+      <div className="flex items-end m-3">
+        <Summary holidays={dates.split(':h:').length - 1} ownBusiness={dates.split(':ob:').length - 1} paidAbsence={dates.split(':pa:').length - 1} />
+        <div className="ml-3">
+          <p className={message.error ? "error border-b border-solid border-current p-2 mb-3 min-w-96" : "normal border-b border-solid border-current p-2 mb-3 min-w-96"}>{message.text}</p>
+          <button className="save p-2 rounded" onClick={onClick}>Guardar</button>
+        </div>
       </div>
-      <div className="flex flex-wrap justify-around p-10">
+      <div className="flex flex-wrap justify-around px-5">
         {months.map((month, index) => {
           return (
             <Month

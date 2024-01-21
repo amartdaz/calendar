@@ -13,6 +13,7 @@
   --secondary-dark: #005B4B;
   --tertiary: #FFE9FF;
   --tertiary-dark: #DB90C6;
+  --ob-color: #F2B5A2;
   --success: #68CE42;
   --success-light: #b4e7a1;
   --warning: #FF9952;
@@ -43,7 +44,7 @@ label {
 }
 
 .ownBusiness {
-  background-color: var(--principal);
+  background-color: var(--ob-color);
 }
 
 .paidAbsence {
