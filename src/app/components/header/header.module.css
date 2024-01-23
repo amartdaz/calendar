@@ -1,0 +1,9 @@
+.header {
+    background-color: var(--principal);
+    padding: 20px;
+}
+
+.header label {
+    color: var(--principal-dark);
+    font-size: x-large;
+}
