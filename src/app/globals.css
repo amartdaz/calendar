@@ -59,12 +59,13 @@ label {
 }
 
 .save {
-  background-color: var(--tertiary);
+  background-color: var(--principal);
   color: var(--principal-dark);
 }
 
 .save:hover {
-  background-color: var(--tertiary-dark);
+  background-color: var(--principal-dark);
+  color: var(--light);
 }
 
 .error {
