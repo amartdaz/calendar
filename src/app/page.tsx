@@ -20,7 +20,7 @@ const months = [
 ];
 export default function Home() {
   const [dates, setDates] = useState("");
-  const [message, setMessage] = useState({ text: "Suuuuuuuuu", error: false });
+  const [message, setMessage] = useState({ text: "Todo está correcto", error: false });
 
   const onClick = () => {
     if (dates.split(":h:").length > 25) {
@@ -29,13 +29,13 @@ export default function Home() {
     }
     if (dates.split(":ob:").length > 3) {
       setMessage({
-        text: "No creo que tengas tantos asuntos propios, revísatelo",
+        text: "Has excedido el límite de asuntos propios",
         error: true,
       });
       return;
     }
     localStorage.setItem("fechas", dates);
-    setMessage({ text: "Sigue así máquina", error: false });
+    setMessage({ text: "Todo está correcto", error: false });
   };
 
   useEffect(() => {
