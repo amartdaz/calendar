@@ -3,7 +3,12 @@
     padding: 20px;
 }
 
-.header label {
+.header button {
     color: var(--principal-dark);
     font-size: x-large;
+    margin-right: 20px;
+}
+
+.header button.selected {
+    color: var(--light);
 }

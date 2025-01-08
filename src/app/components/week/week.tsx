@@ -1,77 +1,47 @@
-// "use client";
-// import { useState } from "react";
+"use client";
+import useYearProvider, { LeavingDaysType } from "@/app/context/yearContext";
 import styles from "./week.module.css";
-
-const festivities = [
-  { month: "Enero", days: [1] },
-  { month: "Febrero", days: [] },
-  { month: "Marzo", days: [19, 28, 29] },
-  { month: "Abril", days: [2] },
-  { month: "Mayo", days: [1] },
-  { month: "Junio", days: [] },
-  { month: "Julio", days: [] },
-  { month: "Agosto", days: [15] },
-  { month: "Septiembre", days: [17] },
-  { month: "Octubre", days: [12] },
-  { month: "Noviembre", days: [1] },
-  { month: "Diciembre", days: [6, 9, 24, 25, 31] },
-];
 
 export default function Week({
   month,
   init,
   numbers,
-  dates,
-  setDates,
 }: {
   month: string;
   init: number;
   numbers: number[];
-  dates: string;
-  setDates: React.Dispatch<React.SetStateAction<string>>;
 }) {
-
+  const { year, months, leavingDays, addDate } = useYearProvider();
   const onClick = (event: any, number: number) => {
-    if (event.target.className.includes("daily")) {
-      setDates((prev) => prev + month + ':h:' + number + ';');
-      return;
-    }
-    if (event.target.className.includes("holiday")) {
-      setDates((prev) => prev.replace(month + ':h:' + number + ';', month + ':ob:' + number + ';'));
-      return;
-    }
-    if (event.target.className.includes("ownBusiness")) {
-      setDates((prev) => prev.replace(month + ':ob:' + number + ';', month + ':pa:' + number + ';'));
-      return;
-    }
-    if (event.target.className.includes("paidAbsence")) {
-      setDates((prev) => prev.replace(month + ':pa:' + number + ';', ''));
-      return;
-    }
+    if(event.target.className.includes('daily')) {addDate('daily', number, month); return;};
+    if (event.target.className.includes("holiday")) addDate('holidays', number, month);
+    if (event.target.className.includes("personalDays")) addDate('personalDays', number, month);
+    if (event.target.className.includes("paidAbsences")) addDate('paidAbsences', number, month);
   };
 
   const getClassName = (value: number, number: number) => {
+    const leavingDaysYear = leavingDays.filter((date) => date.year === year)[0];
     //Comprobamos si está guardado como vacaciones
-    if(dates.includes(month + ':h:' + number + ';')){
-      return 'holiday';
-    }
-    //Comprobamos si está guardado como asuntos propios
-    if(dates.includes(month + ':ob:' + number + ';')){
-      return 'ownBusiness';
-    }
-    //Comprobamos si está guardado como ausencias pagadas
-    if(dates.includes(month + ':pa:' + number + ';')){
-      return 'paidAbsence';
-    }
+    if(leavingDaysYear.holidays.filter((dates) => dates.month === month && dates.days.includes(number)).length > 0) {
+      return 'holiday';}
+    // //Comprobamos si está guardado como asuntos propios
+    if(leavingDaysYear.personalDays.filter((dates) => dates.month === month && dates.days.includes(number)).length > 0) {
+      return 'personalDays';}
+    // //Comprobamos si está guardado como ausencias pagadas
+    if(leavingDaysYear.paidAbsences.filter((dates) => dates.month === month && dates.days.includes(number)).length > 0) {
+      return 'paidAbsences';}
     //Comprobamos si es fin de semana
-    if(value > 4) return styles.weekend;
+    if (value > 4) return styles.weekend;
     //Comprobamos si es festivo
-    if(festivities
-      .filter((festivity) => festivity.month === month)[0]
-      .days.includes(number)) return 'festivity';
-    
+    if (
+      months
+        .filter((festivity) => festivity.name === month)[0]
+        .freeDays.includes(number)
+    )
+      return "festivity";
+
     return styles.daily;
-  }
+  };
 
   return (
     <div className={styles.week}>
@@ -87,9 +57,7 @@ export default function Week({
       {numbers.map((number, index) => {
         return (
           <button
-            className={
-              getClassName(index + init, number + 1)
-            }
+            className={getClassName(index + init, number + 1)}
             key={index}
             onClick={(event) => onClick(event, number + 1)}
           >
