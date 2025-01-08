@@ -37,35 +37,35 @@ export default function Summary() {
   };
   return (
     <div className="flex flex-col items-center m-3">
-      <div className="flex flex-wrap place-content-around gap-3 max-w-72 md:max-w-full p-2 rounded-[20px] mr-3">
+      <div className="flex flex-row place-content-around gap-3 p-2 rounded-[20px]">
         <div className="flex flex-col items-center">
           <label>Festivos</label>
           <p className="festivity w-10 p-1 text-center rounded-[5px]">13</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <label>Asuntos propios</label>
-          <p className="personalDays w-10 p-1 text-center rounded-[5px]">{2 - personalDaysLength}</p>
         </div>
         <div className="flex flex-col items-center">
           <label>Vacaciones</label>
           <p className="holiday w-10 p-1 text-center rounded-[5px]">{24 - holidaysLength}</p>
         </div>
         <div className="flex flex-col items-center">
+          <label>Asuntos propios</label>
+          <p className="personalDays w-10 p-1 text-center rounded-[5px]">{2 - personalDaysLength}</p>
+        </div>
+        <div className="flex flex-col items-center">
           <label>Ausencias pagadas</label>
           <p className="paidAbsences w-10 p-1 text-center rounded-[5px]">{paidAbsencesLength}</p>
         </div>
       </div>
-      <div className="flex items-center mt-3">
+      <div className="md:flex md:items-center mt-3">
         <p
           className={
             message.error
-              ? "error border border-solid border-yellow-500 rounded-[5px] p-2 min-w-96"
-              : "border border-solid border-yellow-500 rounded-[5px] p-2 min-w-96"
+              ? "error border border-solid border-yellow-500 rounded-[5px] p-2 min-w-80 md:min-w-96"
+              : "border border-solid border-yellow-500 rounded-[5px] p-2 min-w-80 md:min-w-96"
           }
         >
           {message.text}
         </p>
-        <button className="save p-2 rounded" onClick={onClick}>
+        <button className="save p-2 rounded mt-3 md:mt-0" onClick={onClick}>
           Guardar
         </button>
       </div>

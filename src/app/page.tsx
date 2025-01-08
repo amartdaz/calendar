@@ -12,7 +12,7 @@ export default function Home() {
       <main>
         <Header />
         <Summary />
-        <div className="flex flex-wrap justify-around px-5">
+        <div className="flex flex-wrap justify-around">
           {[...Array(12).keys()].map((index) => {
             return (
               <Month
