@@ -9,9 +9,18 @@ export default function Month({ index }: { index: number }) {
   const weeks = Math.ceil((month.days + month.init) / 7);
 
   return (
-    <div className="max-w-64 m-3">
-      <label>{month.name}</label>
-      <div>
+    <div className="max-w-96 m-3 text-center">
+      <label className="monthName">{month.name}</label>
+      <div className="month h-80">
+        <div className="weekdays mb-2">
+          <label>Lun</label>
+          <label>Mar</label>
+          <label>Mier</label>
+          <label>Jue</label>
+          <label>Vier</label>
+          <label>Sab</label>
+          <label>Dom</label>
+        </div>
         {[...Array(weeks).keys()].map((week, index) => {
           const numbers =
             index === 0

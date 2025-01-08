@@ -1,14 +1,15 @@
 .header {
-    background-color: var(--principal);
+    background-color: var(--yellow);
     padding: 20px;
 }
 
 .header button {
-    color: var(--principal-dark);
+    color: var(--green-light);
+    font-weight: 500;
     font-size: x-large;
     margin-right: 20px;
 }
 
 .header button.selected {
-    color: var(--light);
+    color: var(--green);
 }

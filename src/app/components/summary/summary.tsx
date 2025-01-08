@@ -36,31 +36,31 @@ export default function Summary() {
     setTimeout(() => {setMessage({ text: "Nice", error: false })}, 2000);
   };
   return (
-    <div className="flex items-end m-3">
-      <div className="flex flex-wrap justify-around p-2 max-w-56 rounded mr-3 border border-solid border-current">
-        <div>
-          <h1 className="max-w-24">Festivos</h1>
-          <p className="festivity max-w-10 p-1">13</p>
+    <div className="flex flex-col items-center m-3">
+      <div className="flex flex-wrap place-content-around gap-3 max-w-72 md:max-w-full p-2 rounded-[20px] mr-3">
+        <div className="flex flex-col items-center">
+          <label>Festivos</label>
+          <p className="festivity w-10 p-1 text-center rounded-[5px]">13</p>
         </div>
-        <div>
-          <h1 className="max-w-24">Asuntos propios</h1>
-          <p className="personalDays max-w-10 p-1">{2 - personalDaysLength}</p>
+        <div className="flex flex-col items-center">
+          <label>Asuntos propios</label>
+          <p className="personalDays w-10 p-1 text-center rounded-[5px]">{2 - personalDaysLength}</p>
         </div>
-        <div>
-          <h1 className="max-w-24">Vacaciones</h1>
-          <p className="holiday max-w-10 p-1">{24 - holidaysLength}</p>
+        <div className="flex flex-col items-center">
+          <label>Vacaciones</label>
+          <p className="holiday w-10 p-1 text-center rounded-[5px]">{24 - holidaysLength}</p>
         </div>
-        <div>
-          <h1 className="max-w-24">Ausencias pagadas</h1>
-          <p className="paidAbsences max-w-10 p-1">{paidAbsencesLength}</p>
+        <div className="flex flex-col items-center">
+          <label>Ausencias pagadas</label>
+          <p className="paidAbsences w-10 p-1 text-center rounded-[5px]">{paidAbsencesLength}</p>
         </div>
       </div>
-      <div className="ml-3">
+      <div className="flex items-center mt-3">
         <p
           className={
             message.error
-              ? "error border-b border-solid border-current p-2 mb-3 min-w-96"
-              : "normal border-b border-solid border-current p-2 mb-3 min-w-96"
+              ? "error border border-solid border-yellow-500 rounded-[5px] p-2 min-w-96"
+              : "border border-solid border-yellow-500 rounded-[5px] p-2 min-w-96"
           }
         >
           {message.text}

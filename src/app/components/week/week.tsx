@@ -1,5 +1,5 @@
 "use client";
-import useYearProvider, { LeavingDaysType } from "@/app/context/yearContext";
+import useYearProvider from "@/app/context/yearContext";
 import styles from "./week.module.css";
 
 export default function Week({

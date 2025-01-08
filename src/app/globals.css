@@ -20,6 +20,14 @@
   --warning-light: #ffcca9;
   --error: #f00;
   --error-light: #ff8080;
+
+  --orange: #d16708;
+  --green: #5a5427;
+  --green-light: #a79057;
+  --grey2: #d3bd99;
+  --background-color: #ffeec1;
+  --yellow: #f5cd62;
+  --yellow-dark: #e4b840;
 }
 
 *,
@@ -32,49 +40,62 @@
 
 main,
 body {
-  background-color: var(--light);
+  background-color: var(--background-color);
+  color: var(--green);
 }
 
-label {
-  font-size: large;
+.weekdays label {
+  font-weight: 500;
+  padding: 0 8px;
+  color: var(--orange)
+}
+
+.monthName {
+  font-size: x-large;
   font-weight: 700;
+  color: var(--orange)
 }
 
-.holiday {
-  background-color: var(--secondary);
-  color: var(--light);
+.holiday,
+.personalDays,
+.paidAbsences,
+.festivity {
+  color: var(--yellow);
   font-weight: 500;
 }
 
+.holiday {
+  background-color: var(--green);
+}
+
 .personalDays {
-  background-color: var(--ob-color);
+  background-color: var(--green-light);
 }
 
 .paidAbsences {
-  background-color: var(--warning);
+  background-color: var(--grey);
 }
 
 .festivity {
   cursor: default;
-  background-color: var(--principal-dark);
-  font-weight: 500;
-  color: var(--light);
+  background-color: var(--orange);
 }
 
 .save {
-  background-color: var(--principal);
-  color: var(--principal-dark);
+  background-color: var(--yellow);
+  color: var(--orange);
 }
 
 .save:hover {
-  background-color: var(--principal-dark);
-  color: var(--light);
+  color: var(--yellow-dark);
 }
 
 .error {
   color: var(--error);
 }
 
-.normal {
-  color: var(--dark);
+.month {
+  background-color: var(--yellow);
+  padding: 20px 30px;
+  border-radius: 30px;
 }
