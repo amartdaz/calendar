@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Month from "./components/month/month";
 import Summary from "./components/summary/summary";
 import Header from "./components/header/header";
-import { LeavingDaysType, YearProvider } from "./context/yearContext";
+import { YearProvider } from "./context/yearContext";
 
 export default function Home() {
 
