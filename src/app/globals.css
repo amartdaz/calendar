@@ -3,17 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --dark: #2F3131;
-  --light: #FDFBFF;
-  --grey: #747070;
-  --grey-light: #DFE0DF;
-  --principal: #D5B9E7;
-  --principal-dark: #3C274C;
-  --secondary: #007663;
-  --secondary-dark: #005B4B;
-  --tertiary: #FFE9FF;
-  --tertiary-dark: #DB90C6;
-  --ob-color: #F2B5A2;
   --success: #68CE42;
   --success-light: #b4e7a1;
   --warning: #FF9952;
@@ -24,8 +13,8 @@
   --orange: #d16708;
   --green: #5a5427;
   --green-light: #a79057;
-  --grey2: #d3bd99;
-  --background-color: #ffeec1;
+  --grey: #d3bd99;
+  --background-color: #f5f0e0;
   --yellow: #f5cd62;
   --yellow-dark: #e4b840;
 }
@@ -60,7 +49,7 @@ body {
 .personalDays,
 .paidAbsences,
 .festivity {
-  color: var(--yellow);
+  color: var(--background-color);
   font-weight: 500;
 }
 
